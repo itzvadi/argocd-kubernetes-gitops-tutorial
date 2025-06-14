@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/itzvadi/argocd-kubernetes-gitops-tutorial.git
     targetRevision: HEAD
-    path: alloy/
+    path: alloy
   destination:
     server: https://kubernetes.default.svc
     namespace: observability
