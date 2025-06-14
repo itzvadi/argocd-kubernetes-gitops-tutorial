@@ -20,7 +20,7 @@ spec:
           image: grafana/alloy:latest
           args:
             - run
-            - --config.file=/etc/alloy/alloy-config.yaml
+            - /etc/alloy/alloy-config.yaml
           ports:
             - containerPort: 12345  # Change to real port if needed
           resources:
