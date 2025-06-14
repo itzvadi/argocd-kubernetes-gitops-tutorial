@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grade-submission-api
+  name: grade-submission
   namespace: grade-demo
   labels:
-    app: grade-submission-vadi
+    app: grade-submission
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: grade-submission-vadi
+      app: grade-submission
   template:
     metadata:
       labels:
-        app: grade-submission-vadi
+        app: grade-submission
     spec:
       containers:
       - name: grade-submission-api
