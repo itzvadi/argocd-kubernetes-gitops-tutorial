@@ -9,23 +9,3 @@ data:
       level  = "info"
       format = "logfmt"
     }
-
-    discovery.kubernetes "example" {
-      role = "node"
-    }
-
-    local.file_match "logs" {
-      path_targets = ["/var/log/*.log"]
-    }
-
-    loki.write "default" {
-      endpoint {
-        url = "http://loki-gateway.observability.svc.cluster.local/loki/api/v1/push"
-      }
-
-      labels = {
-        job = "alloy"
-      }
-
-      forward_to = [local.file_match.logs.receiver]
-    }
