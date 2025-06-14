@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alloy-collector
+  namespace: observability
+  labels:
+    app: alloy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alloy
+  template:
+    metadata:
+      labels:
+        app: alloy
+    spec:
+      containers:
+        - name: alloy
+          image: grafana/alloy:latest
+          args:
+            - --config.file=/etc/alloy/alloy-config.yaml
+          ports:
+            - containerPort: 12345  # Change to real port if needed
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/alloy
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: alloy-config

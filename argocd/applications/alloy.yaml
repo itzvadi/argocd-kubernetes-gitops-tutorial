@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grade-submission
-  namespace: argocd
+  name: alloy
+  namespace: argocd              # Must match where ArgoCD is installed
 spec:
   project: default
   source:
     repoURL: https://github.com/itzvadi/argocd-kubernetes-gitops-tutorial.git
     targetRevision: HEAD
-    path: gitops/basic
+    path: alloy/
   destination:
     server: https://kubernetes.default.svc
-    namespace: grade-demo
+    namespace: observability
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
